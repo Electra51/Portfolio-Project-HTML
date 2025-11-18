@@ -1,366 +1,1463 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Safayet Nur - Front-End Developer</title>
+    <link rel="shortcut icon" type="x-icon" href="images/1.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <script
+      src="https://kit.fontawesome.com/a7bfd61fb9.js"
+      crossorigin="anonymous"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Safayet's Portfolio</title>
-  <link rel="shortcut icon" type="x-icon" href="images/1.png">
-  <!-- bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
 
-  <script src="https://kit.fontawesome.com/a7bfd61fb9.js" crossorigin="anonymous"></script>
-  <!-- google font -->
-  <link rel="stylesheet" href="style.css">
+      body {
+        background: #000;
+        color: #fff;
+        overflow-x: hidden;
+      }
 
+      .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: linear-gradient(
+          135deg,
+          #000000 0%,
+          #1a0a00 50%,
+          #000000 100%
+        );
+      }
 
-</head>
+      .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
 
-<body>
-  <!-- header -->
-  <header class="pt-4 text-white">
-    <h5 class="mb-0">Hello I'm</h5>
-    <h1>Safayet Nur</h1>
-    <p class="text-center text-white-50 mb-0">Front-End Developer</p>
-    <!-- <div>
-    <a href="#Contact"><button type="button" class="btn btn-success mt-2">Let's Start</button></a>
-  </div> -->
-    <div>
+      .particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #ffc107;
+        border-radius: 50%;
+        animation: float 15s infinite ease-in-out;
+        box-shadow: 0 0 10px #ffc107;
+      }
 
-      <div>
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0) translateX(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(100px);
+          opacity: 0;
+        }
+      }
 
+      .navbar {
+        background: rgba(0, 0, 0, 0.9) !important;
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+        padding: 1.2rem 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        padding: 0.8rem 0;
+        box-shadow: 0 10px 40px rgba(255, 193, 7, 0.2);
+      }
+
+      .navbar-brand {
+        font-size: 1.8rem;
+        font-weight: 900;
+        background: linear-gradient(45deg, #ffc107, #ff9800, #ffc107);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 3s ease infinite;
+      }
+
+      @keyframes gradient {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+        margin: 0 15px;
+        transition: all 0.3s ease;
+        position: relative;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+      }
+
+      .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ffc107, #ff9800);
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::before,
+      .nav-link.active::before {
+        width: 100%;
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 20px 50px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glow-circle {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 193, 7, 0.2) 0%,
+          transparent 70%
+        );
+        animation: pulse-glow 4s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.2);
+          opacity: 0.8;
+        }
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h5 {
+        font-size: 1.5rem;
+        color: #ffc107;
+        margin-bottom: 15px;
+        animation: fadeInDown 1s ease;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: 300;
+      }
+
+      .hero h1 {
+        font-size: 6rem;
+        font-weight: 900;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #fff, #ffc107, #ff9800, #fff);
+        background-size: 300% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite, fadeInUp 1s ease;
+        text-shadow: 0 0 80px rgba(255, 193, 7, 0.5);
+      }
+
+      @keyframes shine {
+        to {
+          background-position: 300% center;
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero .subtitle {
+        font-size: 1.8rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 40px;
+        animation: fadeIn 1s ease 0.5s both;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+
+      .glowing-btn {
+        position: relative;
+        background: linear-gradient(45deg, #ffc107, #ff9800);
+        border: none;
+        padding: 18px 50px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 50px;
+        color: #000;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        box-shadow: 0 0 30px rgba(255, 193, 7, 0.5),
+          0 10px 40px rgba(255, 193, 7, 0.3);
+        overflow: hidden;
+        animation: fadeIn 1s ease 1s both;
+      }
+
+      .glowing-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .glowing-btn:hover::before {
+        left: 100%;
+      }
+
+      .glowing-btn:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 50px rgba(255, 193, 7, 0.8),
+          0 15px 50px rgba(255, 193, 7, 0.5);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-indicator i {
+        font-size: 2rem;
+        color: #ffc107;
+        filter: drop-shadow(0 0 10px #ffc107);
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        40% {
+          transform: translateY(-20px) translateX(-50%);
+        }
+        60% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+
+      section {
+        padding: 100px 0;
+        position: relative;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 80px;
+      }
+
+      .section-title .subtitle {
+        color: #ffc107;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        margin-bottom: 15px;
+        font-weight: 300;
+      }
+
+      .section-title h2 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: linear-gradient(45deg, #fff, #ffc107);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .section-title .underline {
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #ffc107, #ff9800);
+        margin: 0 auto;
+        border-radius: 2px;
+        position: relative;
+      }
+
+      .section-title .underline::before,
+      .section-title .underline::after {
+        content: "";
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: #ffc107;
+        border-radius: 50%;
+        top: -2px;
+      }
+
+      .section-title .underline::before {
+        left: -15px;
+      }
+      .section-title .underline::after {
+        right: -15px;
+      }
+
+      .about-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid transparent;
+        border-radius: 30px;
+        padding: 50px;
+        backdrop-filter: blur(10px);
+        transition: all 0.5s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .about-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 30px;
+        padding: 2px;
+        background: linear-gradient(45deg, #ffc107, #ff9800, #ffc107);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .about-card:hover::before {
+        opacity: 1;
+      }
+
+      .about-card:hover {
+        transform: translateY(-15px);
+        box-shadow: 0 20px 60px rgba(255, 193, 7, 0.3);
+      }
+
+      .about-image {
+        max-width: 350px;
+        margin: 0 auto;
+        filter: drop-shadow(0 0 30px rgba(255, 193, 7, 0.5));
+        animation: float-image 3s ease-in-out infinite;
+      }
+
+      @keyframes float-image {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .skill-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid rgba(255, 193, 7, 0.3);
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.5s ease;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .skill-card::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 193, 7, 0.1) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+      }
+
+      .skill-card:hover::before {
+        opacity: 1;
+        animation: rotate 4s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .skill-card:hover {
+        transform: translateY(-15px) scale(1.05);
+        border-color: #ffc107;
+        box-shadow: 0 20px 60px rgba(255, 193, 7, 0.4);
+      }
+
+      .skill-icon {
+        font-size: 4rem;
+        background: linear-gradient(45deg, #ffc107, #ff9800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 25px;
+        filter: drop-shadow(0 0 20px rgba(255, 193, 7, 0.5));
+      }
+
+      .skill-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .skill-list li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 30px;
+      }
+
+      .skill-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 2px;
+        background: #ffc107;
+        transition: width 0.3s ease;
+      }
+
+      .skill-list li:hover {
+        padding-left: 40px;
+        color: #ffc107;
+      }
+
+      .skill-list li:hover::before {
+        width: 20px;
+      }
+
+      .project-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid rgba(255, 193, 7, 0.3);
+        border-radius: 25px;
+        overflow: hidden;
+        transition: all 0.5s ease;
+        height: 100%;
+        position: relative;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 193, 7, 0.2) 0%,
+          transparent 50%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        z-index: 1;
+      }
+
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      .project-card:hover {
+        transform: translateY(-15px);
+        border-color: #ffc107;
+        box-shadow: 0 25px 70px rgba(255, 193, 7, 0.4);
+      }
+
+      .project-image-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 280px;
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .project-card:hover img {
+        transform: scale(1.15);
+      }
+
+      .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .project-card:hover .project-overlay {
+        opacity: 1;
+      }
+
+      .project-card .card-body {
+        padding: 30px;
+        background: rgba(0, 0, 0, 0.8);
+        position: relative;
+        z-index: 2;
+      }
+
+      .project-title {
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        background: linear-gradient(45deg, #ffc107, #ff9800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .btn-outline-custom {
+        border: 2px solid #ffc107;
+        color: #ffc107;
+        padding: 12px 28px;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        margin: 5px;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-outline-custom::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: #ffc107;
+        transition: width 0.4s ease, height 0.4s ease;
+        z-index: -1;
+      }
+
+      .btn-outline-custom:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn-outline-custom:hover {
+        color: #000;
+        border-color: #ffc107;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(255, 193, 7, 0.4);
+      }
+
+      .contact-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px solid rgba(255, 193, 7, 0.3);
+        border-radius: 25px;
+        padding: 40px;
+        text-align: center;
+        transition: all 0.5s ease;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-card::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 193, 7, 0.2) 0%,
+          transparent 70%
+        );
+        transition: width 0.5s ease, height 0.5s ease;
+      }
+
+      .contact-card:hover::before {
+        width: 400px;
+        height: 400px;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-15px) scale(1.05);
+        border-color: #ffc107;
+        box-shadow: 0 20px 60px rgba(255, 193, 7, 0.4);
+      }
+
+      .contact-icon {
+        font-size: 3.5rem;
+        background: linear-gradient(45deg, #ffc107, #ff9800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-card:hover .contact-icon {
+        transform: scale(1.2) rotateY(360deg);
+      }
+
+      .contact-card a {
+        color: #fff;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        z-index: 1;
+      }
+
+      .contact-card a:hover {
+        color: #ffc107;
+      }
+
+      .coming-soon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 2px dashed rgba(255, 193, 7, 0.5);
+        border-radius: 25px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 1.3rem;
+        height: 100%;
+        min-height: 400px;
+        animation: pulse-border 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-border {
+        0%,
+        100% {
+          border-color: rgba(255, 193, 7, 0.3);
+        }
+        50% {
+          border-color: rgba(255, 193, 7, 0.7);
+        }
+      }
+
+      .spinner-border {
+        margin-right: 15px;
+        color: #ffc107;
+      }
+
+      footer {
+        background: rgba(0, 0, 0, 0.95);
+        border-top: 2px solid rgba(255, 193, 7, 0.3);
+        padding: 40px 0;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .modal-content {
+        background: rgba(0, 0, 0, 0.95);
+        border: 2px solid #ffc107;
+        border-radius: 25px;
+        backdrop-filter: blur(20px);
+      }
+
+      .modal-header {
+        border-bottom: 1px solid rgba(255, 193, 7, 0.3);
+      }
+
+      .modal-footer {
+        border-top: 1px solid rgba(255, 193, 7, 0.3);
+      }
+
+      .modal-title {
+        background: linear-gradient(45deg, #ffc107, #ff9800);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: 700;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 3rem;
+        }
+        .hero h5 {
+          font-size: 1rem;
+        }
+        .hero .subtitle {
+          font-size: 1.2rem;
+        }
+        .section-title h2 {
+          font-size: 2.5rem;
+        }
+        .about-card {
+          padding: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="animated-bg"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">SN</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </header>
+    </nav>
 
-  <!-- about me section -->
-  <section class="container">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="glow-circle"></div>
+      <div class="hero-content">
+        <h5>Hello, I'm</h5>
+        <h1>Safayet Nur</h1>
+        <p class="subtitle">Front-End Developer</p>
+        <a
+          href="https://drive.google.com/file/d/1o0mb6fmS_IVeCTVr2xxZAwg4cUwmrWiA/view?usp=sharing"
+          class="glowing-btn">
+          <i class="fas fa-download me-2"></i>Download CV
+        </a>
+      </div>
+      <div class="scroll-indicator">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </section>
 
-    <div class="about  d-flex">
-      <div class="cardy mb-3 text-white" style="width: 75%;">
-        <div class="row g-0">
-          <div class="col-md-12">
-            <div class="card-body ps-5">
-              <h5 class="card-title pt-0">About Me</h5>
-              <p class="card-text text-white-50 ">I'm Safayet Nur. I am an energetic, confident and enthusiastic young
-                person who has developed a mature and responsible approach to any task that I undertake. I'm a
-                Hard-working web developer with a flair for creating elegant solutions in the least amount of time and
-                also can solve a problem efficiently. I eagerly want to serve a professional organization to the best of
-                my knowledge with true dedication, hard work, and commitment.</p>
-              <a href="https://drive.google.com/file/d/1o0mb6fmS_IVeCTVr2xxZAwg4cUwmrWiA/view?usp=sharing"
-                class="btn btn-warning">Download CV</a>
+    <!-- About Section -->
+    <section id="about" class="container">
+      <div class="section-title">
+        <p class="subtitle">Get To Know</p>
+        <h2>About Me</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-lg-8">
+          <div class="about-card">
+            <h3 class="mb-4" style="color: #ffc107; font-weight: 700">
+              Who Am I?
+            </h3>
+            <p class="mb-3" style="line-height: 1.8">
+              I'm Safayet Nur, an energetic, confident and enthusiastic young
+              person who has developed a mature and responsible approach to any
+              task that I undertake.
+            </p>
+            <p class="mb-3" style="line-height: 1.8">
+              I'm a hard-working web developer with a flair for creating elegant
+              solutions in the least amount of time. I can solve problems
+              efficiently and deliver high-quality results.
+            </p>
+            <p class="mb-4" style="line-height: 1.8">
+              I eagerly want to serve a professional organization to the best of
+              my knowledge with true dedication, hard work, and commitment.
+            </p>
+            <a
+              href="https://drive.google.com/file/d/1o0mb6fmS_IVeCTVr2xxZAwg4cUwmrWiA/view?usp=sharing"
+              class="glowing-btn">
+              <i class="fas fa-file-download me-2"></i>Get My CV
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-4 text-center mt-4 mt-lg-0">
+          <img src="images/2.png" alt="Profile" class="img-fluid about-image" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-title">
+          <p class="subtitle">What I Offer</p>
+          <h2>My Skills</h2>
+          <div class="underline"></div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <div class="skill-card">
+              <div class="skill-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <h4 class="mb-4" style="font-weight: 700">
+                Frontend Development
+              </h4>
+              <ul class="skill-list">
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >HTML5 & CSS3
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >JavaScript ES6+
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >React.js
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >Bootstrap
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >Tailwind CSS
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="skill-card">
+              <div class="skill-icon">
+                <i class="fas fa-tools"></i>
+              </div>
+              <h4 class="mb-4" style="font-weight: 700">
+                Tools & Technologies
+              </h4>
+              <ul class="skill-list">
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >Node.js
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >Figma
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >Git & GitHub
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >Responsive Design
+                </li>
+                <li>
+                  <i class="fas fa-check-circle me-2" style="color: #ffc107"></i
+                  >RESTful APIs
+                </li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
-      <div>
-        <img class="img-fluid mt-3" src="images/2.png" alt="">
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="container">
+      <div class="section-title">
+        <p class="subtitle">My Recent Work</p>
+        <h2>Portfolio</h2>
+        <div class="underline"></div>
       </div>
-    </div>
-  </section>
-  <!-- skill section -->
-  <section class="mt-5 pt-2">
-    <p class="text-center mt-5 text-white-50 mb-0">Skills I have</p>
-    <h4 class="text-white text-center mb-3">My Skills</h4>
-
-    <div class="cardy card text-white bg-dark mb-3" style="max-width: 18rem;">
-      <div class="card-header text-center">Frontend Development</div>
-      <div class="card-body">
-        <div class="d-flex justify-content-between">
-          <div class="d-flex">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>HTML</p>
-          </div>
-          <div class="d-flex pe-5">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>CSS</p>
-          </div>
-        </div>
-        <div class="d-flex justify-content-between">
-          <div class="d-flex">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>Bootstrap</p>
-          </div>
-          <div class="d-flex pe-3">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>Tailwind</p>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between">
-          <div class="d-flex">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>Javascript</p>
-          </div>
-          <div class="d-flex pe-4">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>Figma</p>
-          </div>
-        </div>
-
-        <div class="d-flex justify-content-between">
-          <div class="d-flex">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>React.js</p>
-          </div>
-          <div class="d-flex pe-3">
-            <img src="icons/3.png" alt="" height="24px" width="24">
-            <p>Node js</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </section>
-
-  <!-- portfolio section -->
-  <section class="container mt-5 pt-2">
-    <p class="text-center mt-5 text-white-50 mb-0">My recent work</p>
-    <h4 class="text-white text-center mb-3">My Portfolio</h4>
-    <!-- project1 -->
-    <div class="row row-cols-1 row-cols-md-3 g-4 ">
-      <div class="col">
-        <div class="card">
-          <img src="images/Capture2.PNG " class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-white text-center ">Player Selecting Site</h5>
-            <button type="button" class="btn btn-outline-info ms-5" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">Details</button>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Player Selecting Site</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <img class="img-fluid" src="images/Capture2.PNG " alt="">
-                    <li>This is a Javascript-based player-selective project.</li>
-                    <li> Here the user selects a player and sees the total amount of
-                      hiring rate.</li>
-                    <li>After selecting one, the user cannot select that one again.</li>
-                    <li>HTML, CSS, and JavaScript are used here.</li>
-
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-
-                  </div>
-                </div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <!-- Project 1 -->
+        <div class="col">
+          <div class="project-card">
+            <div class="project-image-wrapper">
+              <img src="images/Capture2.PNG" alt="Player Selecting Site" />
+              <div class="project-overlay">
+                <i
+                  class="fas fa-eye"
+                  style="font-size: 3rem; color: #ffc107"></i>
               </div>
             </div>
-            <a href="https://luminous-brigadeiros-373050.netlify.app/" class="btn btn-warning ms-2">Live Site</a>
+            <div class="card-body">
+              <h5 class="project-title">Player Selecting Site</h5>
+              <p class="text-white-50 mb-3">
+                JavaScript-based player selection with budget calculation
+              </p>
+              <button
+                class="btn btn-outline-custom"
+                data-bs-toggle="modal"
+                data-bs-target="#project1Modal">
+                <i class="fas fa-info-circle me-1"></i>Details
+              </button>
+              <a
+                href="https://luminous-brigadeiros-373050.netlify.app/"
+                class="btn btn-outline-custom">
+                <i class="fas fa-external-link-alt me-1"></i>Live
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- project2 -->
-      <div class="col">
-        <div class="card">
-          <img src="images/Capture 12.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-white text-center">Blog Site</h5>
-            <button type="button" class="btn btn-outline-info ms-5" data-bs-toggle="modal"
-              data-bs-target="#projectModal">Details</button>
-            <!-- Modal -->
-            <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title text-center" id="projectModalLabel">Blog Site</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <img class="img-fluid" src="images/Capture 12.png" alt="">
-                    <li>A javascript-based blog site.</li>
-                    <li>It allows users to select one category using the category
-                      button and also shows more information using the modal.</li>
-                    <li>It is a simple Javascript project. Here I also use the Bootstrap
-                      framework, javascript ES6 feature.</li>
 
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-
-                  </div>
-                </div>
+        <!-- Project 2 -->
+        <div class="col">
+          <div class="project-card">
+            <div class="project-image-wrapper">
+              <img src="images/Capture 12.png" alt="Blog Site" />
+              <div class="project-overlay">
+                <i
+                  class="fas fa-eye"
+                  style="font-size: 3rem; color: #ffc107"></i>
               </div>
             </div>
-            <a href="https://sparkly-taffy-4cb092.netlify.app/" class="btn btn-warning ms-2">Live Site</a>
+            <div class="card-body">
+              <h5 class="project-title">Blog Site</h5>
+              <p class="text-white-50 mb-3">
+                Category-based blog with modal functionality
+              </p>
+              <button
+                class="btn btn-outline-custom"
+                data-bs-toggle="modal"
+                data-bs-target="#project2Modal">
+                <i class="fas fa-info-circle me-1"></i>Details
+              </button>
+              <a
+                href="https://sparkly-taffy-4cb092.netlify.app/"
+                class="btn btn-outline-custom">
+                <i class="fas fa-external-link-alt me-1"></i>Live
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- project3 -->
-      <div class="col">
-        <div class="card">
-          <img src="images/img2.PNG" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-white text-center">QuiZone</h5>
-            <button type="button" class="btn btn-outline-info ms-5" data-bs-toggle="modal"
-              data-bs-target="#project2Modal">Details</button>
-            <!-- Modal -->
-            <div class="modal fade" id="project2Modal" tabindex="-1" aria-labelledby="project2ModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project2ModalLabel">Online Learning plateform</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <img class="img-fluid" src="images/img2.PNG" alt="">
-                    <li>This is an Online quiz system based on react js and tailwind
-                    </li>
-                    <li>It is a responsive website.</li>
 
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
-
-                  </div>
-                </div>
+        <!-- Project 3 -->
+        <div class="col">
+          <div class="project-card">
+            <div class="project-image-wrapper">
+              <img src="images/img2.PNG" alt="QuiZone" />
+              <div class="project-overlay">
+                <i
+                  class="fas fa-eye"
+                  style="font-size: 3rem; color: #ffc107"></i>
               </div>
             </div>
-
-            <a href="https://splendorous-brigadeiros-d5f70e.netlify.app/" class="btn btn-warning ms-2">Live Site</a>
+            <div class="card-body">
+              <h5 class="project-title">QuiZone</h5>
+              <p class="text-white-50 mb-3">
+                Online quiz platform built with React & Tailwind
+              </p>
+              <button
+                class="btn btn-outline-custom"
+                data-bs-toggle="modal"
+                data-bs-target="#project3Modal">
+                <i class="fas fa-info-circle me-1"></i>Details
+              </button>
+              <a
+                href="https://splendorous-brigadeiros-d5f70e.netlify.app/"
+                class="btn btn-outline-custom">
+                <i class="fas fa-external-link-alt me-1"></i>Live
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- project3 -->
-      <div class="col">
-        <div class="card">
-          <img src="images/img1.PNG" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-white text-center">SE LEARNING</h5>
-            <button type="button" class="btn btn-outline-info ms-5" data-bs-toggle="modal"
-              data-bs-target="#project3Modal">Details</button>
-            <!-- Modal -->
-            <div class="modal fade" id="project3Modal" tabindex="-1" aria-labelledby="project3ModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project3ModalLabel">SE LEARNING</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <img class="img-fluid" src="images/img1.PNG" alt="">
-                    <li>This is a learning single page application using react js ,tailwind ,react hot toast etc</li>
-                    <li>It is a responsive website. Here user can enroll any subject and learn from anywhere</li>
-                    <li>It is client and server both side web application</li>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
 
-                  </div>
-                </div>
+        <!-- Project 4 -->
+        <div class="col">
+          <div class="project-card">
+            <div class="project-image-wrapper">
+              <img src="images/img1.PNG" alt="SE Learning" />
+              <div class="project-overlay">
+                <i
+                  class="fas fa-eye"
+                  style="font-size: 3rem; color: #ffc107"></i>
               </div>
             </div>
-            <a href="https://learning-site-a4e19.web.app/" class="btn btn-warning ms-2">Live Site</a>
+            <div class="card-body">
+              <h5 class="project-title">SE LEARNING</h5>
+              <p class="text-white-50 mb-3">
+                Full-stack learning platform with enrollment
+              </p>
+              <button
+                class="btn btn-outline-custom"
+                data-bs-toggle="modal"
+                data-bs-target="#project4Modal">
+                <i class="fas fa-info-circle me-1"></i>Details
+              </button>
+              <a
+                href="https://learning-site-a4e19.web.app/"
+                class="btn btn-outline-custom">
+                <i class="fas fa-external-link-alt me-1"></i>Live
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- project4 -->
-      <div class="col">
-        <div class="card">
-          <img src="images/Capture.PNG" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-white text-center">GYM-CLUB</h5>
-            <button type="button" class="btn btn-outline-info ms-5" data-bs-toggle="modal"
-              data-bs-target="#project4Modal">Details</button>
-            <!-- Modal -->
-            <div class="modal fade" id="project4Modal" tabindex="-1" aria-labelledby="project4ModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="project4ModalLabel">GYM-CLUB</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <img class="img-fluid" src="images/Capture.PNG" alt="">
-                    <li>This is an GYM item selecting site using react.js</li>
-                    <li>It allows users to add item in his list and count total time also. </li>
-                    <li>It is a responsive website.</li>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Close</button>
 
-                  </div>
-                </div>
+        <!-- Project 5 -->
+        <div class="col">
+          <div class="project-card">
+            <div class="project-image-wrapper">
+              <img src="images/Capture.PNG" alt="GYM-CLUB" />
+              <div class="project-overlay">
+                <i
+                  class="fas fa-eye"
+                  style="font-size: 3rem; color: #ffc107"></i>
               </div>
             </div>
-            <a href="https://phenomenal-melomakarona-85e196.netlify.app/" class="btn btn-warning ms-2">Live Site</a>
+            <div class="card-body">
+              <h5 class="project-title">GYM-CLUB</h5>
+              <p class="text-white-50 mb-3">
+                React-based gym scheduling with time tracking
+              </p>
+              <button
+                class="btn btn-outline-custom"
+                data-bs-toggle="modal"
+                data-bs-target="#project5Modal">
+                <i class="fas fa-info-circle me-1"></i>Details
+              </button>
+              <a
+                href="https://phenomenal-melomakarona-85e196.netlify.app/"
+                class="btn btn-outline-custom">
+                <i class="fas fa-external-link-alt me-1"></i>Live
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coming Soon -->
+        <div class="col">
+          <div class="coming-soon">
+            <span class="spinner-border"></span>
+            <span>More Projects Coming Soon...</span>
           </div>
         </div>
       </div>
+    </section>
 
-
-
-
-
-      <div class="spinner d-flex align-items-end">
-
-        <span class="spinner-border spinner-border " role="status" aria-hidden="true"></span>
-        Coming Soon...
-
+    <!-- Contact Section -->
+    <section id="contact" class="container">
+      <div class="section-title">
+        <p class="subtitle">Get In Touch</p>
+        <h2>Contact Me</h2>
+        <div class="underline"></div>
       </div>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <h5 class="mb-3" style="font-weight: 700">Email</h5>
+            <a href="mailto:safayetnurelectra@gmail.com">safayet@gmail.com</a>
+          </div>
+        </div>
+        <div class="col">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fab fa-linkedin"></i>
+            </div>
+            <h5 class="mb-3" style="font-weight: 700">LinkedIn</h5>
+            <a href="https://www.linkedin.com/in/safayet-nur-electra-a17a901b0/"
+              >Connect with me</a
+            >
+          </div>
+        </div>
+        <div class="col">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <h5 class="mb-3" style="font-weight: 700">WhatsApp</h5>
+            <a href="https://wa.me/+8801749482819">+880 123 456789</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Footer -->
+    <footer>
+      <p class="mb-0">
+        &copy; 2024 Safayet Nur. All rights reserved. | Designed & Developed
+        with <i class="fas fa-heart" style="color: #ffc107"></i>
+      </p>
+    </footer>
 
-
+    <!-- Modals -->
+    <!-- Project 1 Modal -->
+    <div class="modal fade" id="project1Modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Player Selecting Site</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img
+              class="img-fluid mb-3 rounded"
+              src="images/Capture2.PNG"
+              alt="" />
+            <ul class="text-white-50" style="line-height: 2">
+              <li>JavaScript-based player selection system</li>
+              <li>Users can select players and view total hiring costs</li>
+              <li>Prevents duplicate selections</li>
+              <li>Built with HTML, CSS, and JavaScript</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-custom"
+              data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
-  <!-- contact -->
-  <section id="Contact" class="container mt-5 pt-2">
-    <p class="text-center mt-5 text-white-50 mb-0">Get in Touch!</p>
-    <h4 class="text-white text-center mb-3">Contact Me</h4>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card">
-          <div class="card-body text-center text-white">
-            <img src="icons/gmail.png" alt="" height="24" width="24">
-            <p class="card-title mt-2 mb-0">Email</p>
-            <a href="mailto://safayetnurelectra@gmail.com" class="card-text">safayetnurelectra@gmail.com</a>
+
+    <!-- Project 2 Modal -->
+    <div class="modal fade" id="project2Modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Blog Site</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
           </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body text-center text-white">
-            <img src="icons/linkedin.png" alt="" height="24" width="24">
-            <p class="card-title mt-2 mb-0">Linked In</p>
-            <a href="https://www.linkedin.com/in/safayet-nur-electra-a17a901b0/" class="card-text">Safayet Nur</a>
+          <div class="modal-body">
+            <img
+              class="img-fluid mb-3 rounded"
+              src="images/Capture 12.png"
+              alt="" />
+            <ul class="text-white-50" style="line-height: 2">
+              <li>JavaScript-based blog platform</li>
+              <li>Category filtering functionality</li>
+              <li>Modal-based content display</li>
+              <li>Built with Bootstrap and ES6 JavaScript</li>
+            </ul>
           </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body text-center text-white">
-            <img src="icons/whatsapp.png" alt="" height="24" width="24">
-            <p class="card-title mt-2 mb-0">What's app</p>
-            <a href="https://wa.me/+8801749482819" class="card-text">----------</a>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-custom"
+              data-bs-dismiss="modal">
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-  </section>
+    <!-- Project 3 Modal -->
+    <div class="modal fade" id="project3Modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">QuiZone</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img class="img-fluid mb-3 rounded" src="images/img2.PNG" alt="" />
+            <ul class="text-white-50" style="line-height: 2">
+              <li>Online quiz platform built with React.js</li>
+              <li>Styled with Tailwind CSS</li>
+              <li>Fully responsive design</li>
+              <li>Interactive quiz experience</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-custom"
+              data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  <footer>
-    <p class="text-center mt-5">copyright@2022| designed by safayet Nur</p>
-  </footer>
+    <!-- Project 4 Modal -->
+    <div class="modal fade" id="project4Modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">SE LEARNING</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img class="img-fluid mb-3 rounded" src="images/img1.PNG" alt="" />
+            <ul class="text-white-50" style="line-height: 2">
+              <li>Full-stack learning platform</li>
+              <li>Built with React.js and Tailwind CSS</li>
+              <li>User enrollment system for courses</li>
+              <li>Client and server-side architecture</li>
+              <li>React Hot Toast notifications</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-custom"
+              data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Project 5 Modal -->
+    <div class="modal fade" id="project5Modal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">GYM-CLUB</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <img
+              class="img-fluid mb-3 rounded"
+              src="images/Capture.PNG"
+              alt="" />
+            <ul class="text-white-50" style="line-height: 2">
+              <li>React-based gym scheduling application</li>
+              <li>Add exercises to workout list</li>
+              <li>Time tracking functionality</li>
+              <li>Fully responsive design</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-custom"
+              data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Create Particles
+      const particlesContainer = document.getElementById("particles");
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 15 + "s";
+        particle.style.animationDuration = Math.random() * 10 + 10 + "s";
+        particlesContainer.appendChild(particle);
+      }
 
-  <!-- bootstrap js -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-</body>
+      // Smooth scrolling
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+            if (navbarCollapse.classList.contains("show")) {
+              navbarCollapse.classList.remove("show");
+            }
+          }
+        });
+      });
 
+      // Navbar scroll effect
+      window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
+        }
+
+        // Active link highlighting
+        let current = "";
+        const sections = document.querySelectorAll("section[id]");
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+
+      // Intersection Observer for animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+          }
+        });
+      }, observerOptions);
+
+      // Observe elements
+      document
+        .querySelectorAll(
+          ".about-card, .skill-card, .project-card, .contact-card"
+        )
+        .forEach((card) => {
+          card.style.opacity = "0";
+          card.style.transform = "translateY(50px)";
+          card.style.transition = "all 0.8s ease";
+          observer.observe(card);
+        });
+
+      // Hide scroll indicator on scroll
+      window.addEventListener("scroll", () => {
+        const scrollIndicator = document.querySelector(".scroll-indicator");
+        if (window.scrollY > 100) {
+          scrollIndicator.style.opacity = "0";
+        } else {
+          scrollIndicator.style.opacity = "1";
+        }
+      });
+    </script>
+  </body>
 </html>
